@@ -31,7 +31,7 @@ Context.prototype.createCallback = function (fn) {
             if (!this.hasError) {
                 this.hasError = true
                 this.onReadyCb(err)
-                rootContextCache.delete(this)
+                rootContextCache.delete(this.target)
             }
         } else if (!this.hasError) {
             fn(value)
@@ -45,10 +45,10 @@ Context.prototype.createCallback = function (fn) {
                         }, this).join("\", \"") +
                         "\""
                     ))
-                    rootContextCache.delete(this)
+                    rootContextCache.delete(this.target)
                 } else {
                     this.onReadyCb(null, this.target)
-                    rootContextCache.delete(this)
+                    rootContextCache.delete(this.target)
                 }
             }
         }
